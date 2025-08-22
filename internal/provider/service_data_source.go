@@ -1,12 +1,10 @@
-// Copyright (c) HashiCorp, Inc.
-
 package provider
 
 import (
 	"context"
 	"fmt"
 
-	"github.com/alex-stiff/ranger-go"
+	"github.com/g-research/ranger-go"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
