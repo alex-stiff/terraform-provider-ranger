@@ -3,14 +3,12 @@ module terraform-provider-ranger
 go 1.24.5
 
 require (
-	github.com/g-research/ranger-go v0.0.0-00010101000000-000000000000 // TODO: replace with a specific version when available
+	github.com/g-research/ranger-go v0.0.1
 	github.com/hashicorp/terraform-plugin-framework v1.15.1
 	github.com/hashicorp/terraform-plugin-go v0.28.0
 	github.com/hashicorp/terraform-plugin-log v0.9.0
 	github.com/hashicorp/terraform-plugin-testing v1.13.2
 )
-
-replace github.com/g-research/ranger-go => ../ranger-go
 
 require github.com/hashicorp/terraform-plugin-framework-validators v0.18.0
 

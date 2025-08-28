@@ -45,8 +45,19 @@ To generate or update documentation, run `make generate`.
 
 In order to run the full suite of Acceptance tests, run `make testacc`.
 
-TODO note about docker.
 
 ```shell
 make testacc
 ```
+
+TODO note about docker.
+
+## Code of Conduct
+
+This project adheres to our [Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code.
+
+## License
+
+This project is licensed under the Apache License, Version 2.0 - see the [LICENSE](LICENSE) file for details.
+
+**SPDX-License-Identifier:** Apache-2.0
