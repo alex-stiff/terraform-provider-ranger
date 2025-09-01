@@ -297,6 +297,8 @@ func ConvertModelToPolicy(plan *policyResourceModel) *ranger.Policy {
 	// Set optional fields
 	if plan.Description.ValueString() != "" {
 		policy.Description = plan.Description.ValueString()
+	} else {
+		policy.Description = ""
 	}
 
 	if plan.ServiceType.ValueString() != "" {
@@ -425,6 +427,8 @@ func ConvertModelToPolicy(plan *policyResourceModel) *ranger.Policy {
 
 			policy.PolicyItems[i] = policyItem
 		}
+	} else {
+		policy.PolicyItems = nil // Ensure it's set to nil if no items
 	}
 
 	return &policy
@@ -435,7 +439,6 @@ func ConvertPolicyToModel(policy *ranger.Policy) *policyResourceModel {
 	model := policyResourceModel{
 		ID:             types.Int64Value(int64(policy.ID)),
 		Name:           types.StringValue(policy.Name),
-		Description:    types.StringValue(policy.Description),
 		IsEnabled:      types.BoolValue(policy.IsEnabled),
 		Version:        types.Int64Value(int64(policy.Version)),
 		Service:        types.StringValue(policy.Service),
@@ -447,6 +450,12 @@ func ConvertPolicyToModel(policy *ranger.Policy) *policyResourceModel {
 		ServiceType:    types.StringValue(policy.ServiceType),
 		Resources:      ResourcesModel{},
 		PolicyItems:    make([]PolicyItemModel, len(policy.PolicyItems)),
+	}
+
+	if policy.Description != "" {
+		model.Description = types.StringValue(policy.Description)
+	} else {
+		model.Description = types.StringNull()
 	}
 
 	if policy.Resources.Topic != nil {
@@ -567,6 +576,8 @@ func ConvertPolicyToModel(policy *ranger.Policy) *policyResourceModel {
 				}
 			}
 		}
+	} else {
+		model.PolicyItems = nil // Ensure it's set to nil if no items
 	}
 
 	return &model
