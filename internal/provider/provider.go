@@ -1,3 +1,5 @@
+// Copyright (c) HashiCorp, Inc.
+
 package provider
 
 import (
@@ -52,17 +54,18 @@ func (p *rangerProvider) Metadata(_ context.Context, _ provider.MetadataRequest,
 // Schema defines the provider-level schema for configuration data.
 func (p *rangerProvider) Schema(_ context.Context, _ provider.SchemaRequest, resp *provider.SchemaResponse) {
 	resp.Schema = schema.Schema{
+		Description: "Interact with Ranger.",
 		Attributes: map[string]schema.Attribute{
 			"host": schema.StringAttribute{
-				Description: "Host to use",
+				Description: "URI for Ranger. May also be provided via RANGER_HOST environment variable.",
 				Optional:    true,
 			},
 			"username": schema.StringAttribute{
-				Description: "Username to use for authentication",
+				Description: "Username for Ranger. May also be provided via RANGER_USERNAME environment variable.",
 				Optional:    true,
 			},
 			"password": schema.StringAttribute{
-				Description: "Password to use for authentication",
+				Description: "Password for Ranger. May also be provided via RANGER_PASSWORD environment variable.",
 				Optional:    true,
 				Sensitive:   true,
 			},
