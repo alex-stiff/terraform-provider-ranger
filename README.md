@@ -5,7 +5,7 @@ A Terraform provider for Apache Ranger.
 ## Requirements
 
 - [Terraform](https://developer.hashicorp.com/terraform/downloads) >= 1.0
-- [Go](https://golang.org/doc/install) >= 1.23
+- [Go](https://golang.org/doc/install) >= 1.24
 
 ## Building The Provider
 
@@ -33,7 +33,7 @@ Then commit the changes to `go.mod` and `go.sum`.
 
 ## Using the provider
 
-TODO
+See the [examples](examples) directory for provider, resource, and data source usage.
 
 ## Developing the Provider
 
@@ -43,14 +43,18 @@ To compile the provider, run `go install`. This will build the provider and put 
 
 To generate or update documentation, run `make generate`.
 
-In order to run the full suite of Acceptance tests, run `make testacc`.
+In order to run the full suite of Acceptance tests, first start up a local Ranger instance using docker:
+
+```
+docker compose -f docker/docker-compose.yml up -d
+```
+
+Then run `make testacc` to run the acceptance tests.
 
 
 ```shell
 make testacc
 ```
-
-TODO note about docker.
 
 ## Code of Conduct
 
