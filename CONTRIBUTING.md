@@ -1,4 +1,4 @@
-# Contributing to terraform-provid-erranger
+# Contributing to terraform-provider-ranger
 
 We're excited to have you contribute to our project! This document outlines the process you should follow to contribute effectively.
 
@@ -44,7 +44,7 @@ Ensure you can build the project successfully:
 2. Install the provider by running:
 
     ```bash
-    go install .
+    go install
     ```
 
 3. Verify the installation by creating a `main.tf` file with the following content:
@@ -58,9 +58,15 @@ Ensure you can build the project successfully:
         }
       }
     }
+
+    provider "ranger" {
+      username = "admin"
+      password = "rangerR0cks!"
+      host     = "http://localhost:6080"
+    }
     ```
 
-4. Run `terraform init` in the directory containing `main.tf`. You should see output indicating that the provider has been installed.
+4. Run `terraform plan` in the directory containing `main.tf` and verify no errors.
 
 ## Workflow and Branching
 
@@ -72,8 +78,8 @@ Our preferred workflow and branching structure:
 
 Our approach to testing:
 
-- **Test Location**: TODO.
-- **Running Tests**: TODO.
+- **Test Location**: Tests can be found in the [internal/provider](/internal/provider) directory.
+- **Running Tests**: For unit tests run `make test`. For acceptance tests run `make testacc`.
 
 ## Coding Style and Linters
 
@@ -81,7 +87,6 @@ Our coding standards and tools:
 
 - **Coding Standards**: Code should be formatted using `go fmt`.
 - **Linters**: We use [golangci-lint](https://github.com/golangci/golangci-lint) to lint this codebase.
-- **Static analysis**: Code is checked using `go vet`
 
 ## Writing Issues
 
