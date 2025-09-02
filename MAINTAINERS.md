@@ -1,4 +1,4 @@
-The current maintainers of the ranger-go project consist of:
+The current maintainers of the terraform-provider-ranger project consist of:
 
 | Name | Employer | Responsibilities |
 | ---- | -------- | ---------------- |
