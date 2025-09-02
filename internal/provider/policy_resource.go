@@ -1,3 +1,5 @@
+// Copyright (c) HashiCorp, Inc.
+
 package provider
 
 import (
@@ -92,6 +94,7 @@ func (r *policyResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 	resourceSchema := schema.SingleNestedAttribute{
 		Attributes: map[string]schema.Attribute{
 			"values": schema.ListAttribute{
+				Description: "List of resource values.",
 				ElementType: types.StringType,
 				Required:    true,
 			},
@@ -120,91 +123,96 @@ func (r *policyResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 	resp.Schema = schema.Schema{
 		Attributes: map[string]schema.Attribute{
 			"id": schema.Int64Attribute{
-				Computed: true,
+				Description: "The ID of the policy.",
+				Computed:    true,
 				PlanModifiers: []planmodifier.Int64{
 					int64planmodifier.UseStateForUnknown(),
 				},
 			},
 			"guid": schema.StringAttribute{
-				Computed: true,
+				Description: "The GUID of the policy.",
+				Computed:    true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
 			},
 			"name": schema.StringAttribute{
-				Required: true,
+				Description: "The name of the policy.",
+				Required:    true,
 			},
 			"description": schema.StringAttribute{
+				Description: "A description of the policy.",
 				Optional:    true,
 				Computed:    true,
-				Description: "A description of the policy.",
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
 			},
 			"service": schema.StringAttribute{
-				Required: true,
+				Description: "The name of the service this policy applies to.",
+				Required:    true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
 			},
 			"is_audit_enabled": schema.BoolAttribute{
+				Description: "Enable or disable audit logging for this policy.",
 				Optional:    true,
 				Computed:    true,
-				Description: "Enable or disable audit logging for this policy.",
 				Default:     booldefault.StaticBool(true),
 				PlanModifiers: []planmodifier.Bool{
 					boolplanmodifier.UseStateForUnknown(),
 				},
 			},
 			"is_enabled": schema.BoolAttribute{
+				Description: "Enable or disable this policy.",
 				Optional:    true,
 				Computed:    true,
-				Description: "Enable or disable this policy.",
 				Default:     booldefault.StaticBool(true),
 				PlanModifiers: []planmodifier.Bool{
 					boolplanmodifier.UseStateForUnknown(),
 				},
 			},
 			"version": schema.Int64Attribute{
-				Computed:    true,
 				Description: "The version of the policy.",
+				Computed:    true,
 			},
 			"policy_type": schema.Int64Attribute{
+				Description: "The type of the policy. This is typically used to differentiate between different policy types in Ranger.",
 				Optional:    true,
 				Computed:    true,
-				Description: "The type of the policy. This is typically used to differentiate between different policy types in Ranger.",
 				Default:     int64default.StaticInt64(0),
 				PlanModifiers: []planmodifier.Int64{
 					int64planmodifier.UseStateForUnknown(),
 				},
 			},
 			"policy_priority": schema.Int64Attribute{
+				Description: "The priority of the policy. Policies with lower numbers are evaluated first.",
 				Optional:    true,
 				Computed:    true,
-				Description: "The priority of the policy. Policies with lower numbers are evaluated first.",
 				Default:     int64default.StaticInt64(0),
 				PlanModifiers: []planmodifier.Int64{
 					int64planmodifier.UseStateForUnknown(),
 				},
 			},
 			"is_deny_all_else": schema.BoolAttribute{
+				Description: "If true, this policy denies all other access not explicitly allowed by other policies.",
 				Optional:    true,
 				Computed:    true,
-				Description: "If true, this policy denies all other access not explicitly allowed by other policies.",
 				Default:     booldefault.StaticBool(false),
 				PlanModifiers: []planmodifier.Bool{
 					boolplanmodifier.UseStateForUnknown(),
 				},
 			},
 			"service_type": schema.StringAttribute{
-				Computed:    true,
 				Description: "The type of service this policy applies to, such as 'kafka'.",
+				Computed:    true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
 			},
 			"resources": schema.SingleNestedAttribute{
+				Description: "Resources to which the policy applies.",
 				Attributes: map[string]schema.Attribute{
 					// Kafka Resources
 					"topic": resourceSchema,
@@ -221,6 +229,8 @@ func (r *policyResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 				Required: true,
 			},
 			"policy_items": schema.ListNestedAttribute{
+				Description: "List of policy items that define the access controls for this policy.",
+				Optional:    true,
 				NestedObject: schema.NestedAttributeObject{
 					Attributes: map[string]schema.Attribute{
 						"accesses": schema.ListNestedAttribute{
@@ -274,8 +284,6 @@ func (r *policyResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 						},
 					},
 				},
-				Description: "List of policy items that define the access controls for this policy.",
-				Optional:    true,
 			},
 		},
 	}
