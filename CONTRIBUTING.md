@@ -6,7 +6,7 @@ We're excited to have you contribute to our project! This document outlines the 
 
 Basic instructions about where to send patches, check out source code, and get development support:
 
-- **Patches**: Please raise patches as Pull Requests.
+- **Patches**: Please raise patches as Pull Requests [here](https://github.com/G-Research/terraform-provider-ranger/pulls).
 - **Source Code**: You can check out the source code at https://github.com/G-Research/terraform-provider-ranger.git.
 - **Support**: For development support, please reach out by [raising an issue](https://github.com/G-Research/terraform-provider-ranger/issues).
 

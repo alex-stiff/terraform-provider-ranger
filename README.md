@@ -56,6 +56,14 @@ Then run `make testacc` to run the acceptance tests.
 make testacc
 ```
 
+## Contributing
+
+If you would like to contribute to this project, please fork the repository and make your changes in a separate branch. Once you have made your changes, you can submit a pull request for review. See [CONTRIBUTING.md](CONTRIBUTING.md) for more details.
+
+## Security
+
+Please see [SECURITY.md](SECURITY.md) for our Security and Coordinated Vulnerability Disclosure Policy.
+
 ## Code of Conduct
 
 This project adheres to our [Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code.
